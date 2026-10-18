@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#fff0f5">
+  <meta name="description" content="Aランクの語句98語を4択テストで練習できる、りっちゃんのことばテスト。">
+  <title>りっちゃんのことばテスト | Aランク98語</title>
+  <style>
+    :root{--pink:#e8498c;--dark:#772d53;--muted:#93758a;--light:#fff3f7;--border:#f2d3e1;--mint:#d7f5ed;--good:#177c62;--bad:#be4b6b;--shadow:0 13px 36px rgba(164,82,122,.12)}
+    *{box-sizing:border-box}
+    html{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Hiragino Sans",Meiryo,sans-serif;scroll-behavior:smooth}
+    body{margin:0;color:#58384b;background:radial-gradient(ellipse at 18% 6%,#ffe5ef 0,transparent 40%),radial-gradient(ellipse at 90% 28%,#ffedf3 0,transparent 38%),#fff9fb;min-height:100dvh;padding-bottom:env(safe-area-inset-bottom)}
+    button,select,input{font:inherit}
+    button{cursor:pointer;-webkit-tap-highlight-color:transparent}
+    .app{max-width:750px;margin:auto;padding:18px 16px 48px}
+    .topnav{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;gap:10px}
+    .brand{font-size:13px;font-weight:900;letter-spacing:.08em;color:var(--pink);display:flex;align-items:center;gap:8px}
+    .brand-dot{width:23px;height:23px;background:var(--pink);color:white;border-radius:9px;display:inline-grid;place-items:center;font-size:12px;transform:rotate(-8deg)}
+    .navright{display:flex;gap:7px;align-items:center}
+    .navbtn{border:1px solid var(--border);border-radius:50px;background:white;color:var(--dark);padding:9px 12px;font-size:12px;font-weight:800}
+    .navbtn:focus-visible,.btn:focus-visible,.choice:focus-visible,select:focus-visible,input:focus-visible{outline:3px solid #ee8fb9;outline-offset:3px}
+    .hero{border-radius:30px 30px 24px 24px;background:linear-gradient(140deg,#ffcfe1,#ffddeb 54%,#ffe8cf);border:2px solid #fff;box-shadow:var(--shadow);padding:25px 24px 20px;position:relative;overflow:hidden;display:flex;gap:8px;align-items:center;min-height:206px}
+    .hero:before{content:'✿';position:absolute;right:24px;top:11px;font-size:35px;color:#fff9fc;transform:rotate(12deg)}
+    .hero:after{content:'✦';position:absolute;left:48%;bottom:14px;font-size:30px;color:#fff9fc}
+    .hero-text{position:relative;z-index:1;flex:1;min-width:0}
+    .eyebrow{display:inline-block;font-size:11px;letter-spacing:.07em;font-weight:900;color:#ab4c73;background:#fff9fd;border:1px solid #f8c1d8;padding:7px 12px;border-radius:999px}
+    h1{font-size:clamp(25px,6vw,35px);color:#6b2b4c;line-height:1.3;letter-spacing:.025em;margin:11px 0 8px;font-weight:900}
+    .subtitle{font-size:13px;line-height:1.75;color:#925370;font-weight:700;margin:0}
+    .mascot{flex:0 0 118px;position:relative;height:128px;align-self:flex-end;filter:drop-shadow(0 7px 0 rgba(234,120,155,.16))}
+    .ear{position:absolute;width:36px;height:57px;background:#fff;border-radius:65% 65% 30% 30%;top:8px;border:2px solid #f9afc9}.ear.l{left:19px;transform:rotate(-19deg)}.ear.r{right:19px;transform:rotate(19deg)}
+    .ear:after{content:'';position:absolute;background:#ffcfdf;width:15px;height:31px;border-radius:60%;left:9px;top:9px}
+    .face{background:#fff;border:2px solid #f9afc9;border-radius:53% 53% 47% 47%;height:95px;position:absolute;bottom:1px;left:3px;right:3px}
+    .eye{width:7px;height:10px;border-radius:50%;position:absolute;top:41px;background:#593449}.eye.l{left:35px}.eye.r{right:35px}
+    .blush{position:absolute;top:54px;background:#ffb4d0;border-radius:50%;width:19px;height:10px;opacity:.9}.blush.l{left:13px}.blush.r{right:13px}
+    .mouth{position:absolute;left:50%;transform:translateX(-50%);top:51px;font-size:13px;color:#865267;font-weight:900}
+    .hero .heart{position:absolute;right:103px;top:32px;font-size:26px;color:#ec6b9c;transform:rotate(-12deg)}
+    .summarygrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:16px 0}
+    .stat{background:#fff;border:1px solid #f8dfeb;border-radius:17px;text-align:center;padding:13px 7px;box-shadow:0 4px 14px #e9accb12}
+    .stat strong{display:block;font-size:23px;color:var(--dark);font-variant-numeric:tabular-nums}.stat span{font-size:11px;color:var(--muted);font-weight:800}
+    .panel{background:#fff;border:1px solid #f8e2ec;box-shadow:var(--shadow);border-radius:25px;padding:22px;margin-top:16px}
+    h2{font-size:19px;line-height:1.5;color:#743452;margin:0 0 15px}.sectionlabel{font-size:13px;font-weight:900;color:#81576c;display:block;margin:17px 0 9px}
+    .fields{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .select{width:100%;border-radius:13px;border:1.5px solid var(--border);background:#fffafd;color:#684356;padding:12px 13px;min-height:46px;font-weight:700}
+    .seg{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.seg.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+    .seg button{border:1.5px solid #f1d6e3;border-radius:15px;padding:14px 6px;background:#fffafd;color:#8f6d7f;font-size:13px;font-weight:800;min-height:48px}
+    .seg button[aria-pressed="true"]{background:#fff0f6;color:#a42c67;border:2px solid #e86da2;box-shadow:inset 0 0 0 1px #ffd9e8}
+    .note{font-size:12px;line-height:1.75;color:#927285;margin:10px 0 0}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;border:0;border-radius:16px;padding:15px 20px;font-weight:900;min-height:52px;text-align:center;transition:transform .15s,filter .15s}
+    .btn:active{transform:scale(.985)}.btn.primary{color:white;background:linear-gradient(110deg,#e95495,#e44285);box-shadow:0 6px 0 #c53474,0 14px 22px #d5609940}.btn.secondary{color:#934369;background:#fff0f6;border:1.5px solid #efc4d7}.btn.dark{background:#75405b;color:white}.btn:disabled{filter:grayscale(.6);opacity:.55;cursor:not-allowed;box-shadow:none}
+    .btn.full{width:100%}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}.actions>*{flex:1}
+    .tiny{font-size:11px;color:var(--muted)}.center{text-align:center}.hidden{display:none!important}
+    .progress-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:9px;font-weight:900;color:#8a5070;font-size:13px}
+    .progress-bg{height:11px;background:#f8e2ec;border-radius:30px;overflow:hidden;margin-bottom:22px}.progress-fill{height:100%;background:linear-gradient(90deg,#f79ac2,#e7488a);width:0;transition:width .2s;border-radius:30px}
+    .qtype{color:#b26e89;font-size:12px;font-weight:900;margin-bottom:12px}.question{font-size:clamp(25px,5.9vw,35px);line-height:1.55;color:#63324c;font-weight:900;margin-bottom:22px;overflow-wrap:anywhere}
+    .choices{display:grid;gap:11px}.choice{display:flex;align-items:center;gap:13px;padding:15px 14px;background:#fff;border:2px solid #efdde6;border-radius:16px;min-height:70px;width:100%;text-align:left;color:#684456;font-size:14px;line-height:1.6;font-weight:800;transition:background .14s,border-color .14s}
+    .choice .mark{border-radius:12px;border:1.5px solid #efd5e1;background:#fff7fa;min-width:34px;width:34px;height:34px;display:grid;place-items:center;font-size:14px;font-weight:900;color:#c37c9c;flex-shrink:0}
+    .choice.selected{background:#fff0f6;border-color:#e95495}.choice.selected .mark{background:#e95495;color:white;border-color:#e95495}
+    .choice.correct{background:#e7f9f1;border-color:#52ae91}.choice.correct .mark{background:#34a581;color:white;border-color:#34a581}
+    .choice.incorrect{background:#fff0f1;border-color:#e7829e}.choice.incorrect .mark{background:#da6687;color:white;border-color:#da6687}
+    .choice:disabled{cursor:default}.feedback{background:#fff7fb;border:1.5px solid #f5d3e2;padding:18px;border-radius:16px;margin-top:15px;font-size:14px;line-height:1.8}.feedback strong{color:var(--dark)}
+    .feedback.ok{background:#f0fff8;border-color:#bce7d9}.feedback.ng{background:#fff5f7;border-color:#f4c9d6}
+    .feedback .ex{color:#805d70;font-size:13px;margin-top:8px}
+    .scoreCircle{height:158px;width:158px;margin:10px auto 14px;border:10px solid #ffe0ec;border-radius:100%;background:#fff2f7;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#80334f;box-shadow:0 8px 30px #f9c7da55}.scoreCircle b{font-size:43px;line-height:1.1}.scoreCircle small{font-weight:800;font-size:12px}
+    .resultTitle{font-size:26px;color:var(--dark);margin:0 0 8px}.resultSub{font-size:13px;color:#9a6c84;line-height:1.7}
+    .review{margin-top:15px;display:grid;gap:10px}.reviewItem{border:1px solid #f0dce5;border-radius:14px;padding:14px 16px;background:#fffbfd}.reviewItem b{color:#6c3150;font-size:15px}.reviewItem p{margin:5px 0;color:#816276;font-size:13px;line-height:1.7}.reviewItem .wrong{color:#b84c6f;font-size:12px}
+    .pill{font-size:11px;padding:4px 8px;border-radius:20px;background:#fff0f5;color:#ad507c;display:inline-block;vertical-align:middle;margin-left:7px;font-weight:900}
+    .stampbar{display:flex;flex-wrap:wrap;gap:9px;margin-top:11px}.stamp{height:37px;width:37px;display:grid;place-items:center;background:#fff0f6;border:1px solid #f6d3e1;border-radius:12px;font-size:21px}
+    .listGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:15px}.wordItem{border:1px solid #f4dce8;background:#fffafe;padding:11px 12px;border-radius:12px;line-height:1.4}.wordItem b{display:block;font-size:13px;color:#81405f;overflow-wrap:anywhere}.wordItem span{display:block;font-size:11px;color:#a48194;padding-top:3px}
+    input.search{width:100%;font-size:16px;padding:12px 15px;border:1.5px solid #f2d4e1;border-radius:14px;background:#fffafb;color:var(--dark)}
+    .footer{font-size:11px;line-height:1.8;text-align:center;color:#b08c9e;margin:24px 15px 0}
+    .showOnQuiz,.showOnResult{display:none}
+    @media(max-width:460px){.app{padding:14px 12px 36px}.hero{padding:21px 18px;min-height:193px}.mascot{flex-basis:98px;height:117px}.hero .heart{right:87px}.panel{padding:18px}.choice{font-size:13px}.fields{gap:8px}.seg button{font-size:12px}.navbtn{padding:9px}.question{font-size:25px}}
+    @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important}}
+  </style>
+</head>
+<body>
+<main class="app">
+  <nav class="topnav" aria-label="メニュー">
+    <div class="brand"><span class="brand-dot">✿</span> RICCHAN'S KOTOBA TEST</div>
+    <div class="navright"><a class="navbtn" style="text-decoration:none" href="oboeru.html">🌷 暗記帳</a><button class="navbtn" type="button" id="wordNav">語句一覧</button><button class="navbtn" type="button" id="homeNav">ホーム</button></div>
+  </nav>
+  <section id="homeView">
+    <div class="hero">
+      <div class="hero-text"><span class="eyebrow">✿ 国語のことば 〈Aランク〉</span><h1>りっちゃんの<br>ことばテスト</h1><p class="subtitle">覚えて、答えて、また挑戦！<br>少しずつ「わかる」を増やそう ♡</p></div>
+      <div class="mascot" aria-hidden="true"><div class="ear l"></div><div class="ear r"></div><div class="face"><i class="eye l"></i><i class="eye r"></i><i class="blush l"></i><i class="blush r"></i><span class="mouth">ᴗ</span></div></div><span class="heart" aria-hidden="true">♥</span>
+    </div>
+    <div class="summarygrid"><div class="stat"><strong id="wordCount">98</strong><span>Aランク語句</span></div><div class="stat"><strong id="weakCount">0</strong><span>復習する語句</span></div><div class="stat"><strong id="stampCount">0</strong><span>がんばりスタンプ</span></div></div>
+    <div style="margin-top:15px"><a href="oboeru.html" class="btn secondary full" style="text-decoration:none">🌸 まず暗記帳で98語を覚える →</a></div>
+    <section class="panel">
+      <h2>🌷 テストをはじめよう</h2>
+      <div class="fields"><label><span class="sectionlabel">出題するページ</span><select id="pageSelect" class="select"><option value="all">34〜41ページ 全部</option></select></label><label><span class="sectionlabel">問題数</span><select id="countSelect" class="select"><option value="10">10問</option><option value="20" selected>20問</option><option value="30">30問</option><option value="all">選んだ範囲の全部</option></select></label></div>
+      <span class="sectionlabel">問題の出し方</span><div class="seg" id="modeSeg" role="group" aria-label="問題形式"><button type="button" data-v="meaning" aria-pressed="true">語句 → 意味</button><button type="button" data-v="reverse" aria-pressed="false">意味 → 語句</button></div>
+      <span class="sectionlabel">答え合わせ</span><div class="seg" id="timingSeg" role="group" aria-label="答え合わせのタイミング"><button type="button" data-v="end" aria-pressed="true">最後にまとめて</button><button type="button" data-v="each" aria-pressed="false">1問ずつ確認</button></div>
+      <p class="note">「最後にまとめて」は本番テスト方式。答えを選んでも、その場では正解が出ません。</p>
+      <div class="actions"><button id="startBtn" class="btn primary full" type="button">✦ 4択テストをスタート</button></div>
+      <div class="actions" style="margin-top:12px"><button id="weakStartBtn" class="btn secondary full" type="button">↺ 前に間違えた語句を復習</button></div>
+    </section>
+    <section class="panel" style="padding:18px 22px"><div style="font-size:15px;font-weight:900;color:#8c4b69">🌟 がんばりスタンプ</div><div class="stampbar" id="stampbar"><span class="tiny">80%以上正解するとスタンプがもらえるよ。</span></div></section>
+  </section>
+  <section id="quizView" class="hidden">
+    <div class="panel">
+      <div class="progress-head"><span id="questionNumber">第 1 問 / 全 20 問</span><span id="miniScore">Aランク</span></div><div class="progress-bg"><div id="progressFill" class="progress-fill"></div></div>
+      <div id="qtype" class="qtype">次の語句の意味として正しいものはどれ？</div>
+      <div id="questionText" class="question"></div>
+      <div id="choices" class="choices" role="group" aria-label="答えの選択肢"></div>
+      <div id="feedback" class="feedback hidden" aria-live="polite"></div>
+      <div class="actions"><button id="skipBtn" class="btn secondary" type="button">わからない・とばす</button><button id="nextBtn" class="btn primary" type="button" disabled>次の問題へ →</button></div>
+      <p class="note center">数字キーの 1〜4 でも選べます。</p>
+    </div>
+  </section>
+  <section id="resultView" class="hidden">
+    <div class="panel center"><div style="font-size:32px">🎉</div><h2 class="resultTitle" id="resultTitle">テストおつかれさま！</h2><div class="scoreCircle"><b id="resultPct">0%</b><small id="resultCount">0 / 20 問正解</small></div><p id="resultMsg" class="resultSub"></p><div class="actions"><button class="btn secondary" id="againBtn" type="button">ホームに戻る</button><button class="btn primary" id="retryBtn" type="button">まちがいを解き直す</button></div></div>
+    <div class="panel" id="reviewPanel"><h2>📖 答え合わせ</h2><p class="note" id="reviewDesc"></p><div class="review" id="reviewList"></div></div>
+  </section>
+  <section id="wordView" class="hidden"><div class="panel"><h2>📚 Aランク語句一覧</h2><p class="note">34〜41ページの「A」だけを収録。語句を見直してからテストに挑戦しよう。</p><div class="fields" style="margin-top:14px;grid-template-columns:1fr 1fr"><select id="listPage" class="select"><option value="all">全ページ</option></select><select id="listStatus" class="select"><option value="all">すべて</option><option value="weak">苦手だけ</option></select></div><div style="margin-top:12px"><input id="wordSearch" class="search" placeholder="語句を検索" aria-label="語句を検索"></div><div class="listGrid" id="wordsList"></div><div class="actions"><button id="wordBack" class="btn secondary full" type="button">ホームへ戻る</button></div></div></section>
+  <footer class="footer">写真の34〜41ページのA語句から作成 ／ 意味と例文はオリジナルです。<br>学習記録はこの端末のブラウザーに保存されます。<br>✿ 今日もひとつずつ、ことばの力を育てよう ✿</footer>
+</main>
+<script>
+'use strict';
+const WORDS = [{"id":"p34-したためる","page":34,"word":"したためる","meaning":"手紙や文章などを書き記すこと。","example":"旅行先から祖父母に手紙をしたためた。","type":"v"},{"id":"p34-しのぐ","page":34,"word":"しのぐ","meaning":"困難や苦しさを工夫して乗り越えること。","example":"暑さをしのぐために木陰へ移動した。","type":"v"},{"id":"p34-しのぶ","page":34,"word":"しのぶ","meaning":"過ぎ去った人や出来事を懐かしく思い出すこと。","example":"昔の友人をしのんでアルバムを開いた。","type":"v"},{"id":"p34-すこぶる","page":34,"word":"すこぶる","meaning":"たいへん。非常に。","example":"今日はすこぶる調子がいい。","type":"adv"},{"id":"p34-すさむ","page":34,"word":"すさむ","meaning":"心や生活が荒れて、落ち着きを失うこと。","example":"忙しさで気持ちがすさまないよう気をつける。","type":"v"},{"id":"p34-すべ","page":34,"word":"すべ","meaning":"物事を行うための方法や手段。","example":"困った状況を変えるすべを考えた。","type":"n"},{"id":"p34-ぞんざい","page":34,"word":"ぞんざい","meaning":"いい加減で、丁寧さや思いやりに欠けるようす。","example":"人の作品をぞんざいに扱ってはいけない。","type":"adj"},{"id":"p34-たあいない","page":34,"word":"たあいない","meaning":"大したことがない。取るに足りない。","example":"たあいない話で盛り上がった。","type":"adj"},{"id":"p34-たけだけしい","page":34,"word":"たけだけしい","meaning":"勢いが強く、いかにも勇ましいようす。","example":"選手はたけだけしい表情で入場した。","type":"adj"},{"id":"p34-たける","page":34,"word":"たける","meaning":"ある分野や能力に特に優れていること。","example":"兄は人をまとめる力にたけている。","type":"v"},{"id":"p35-たしなむ","page":35,"word":"たしなむ","meaning":"趣味や芸事などを楽しみながら身につけること。","example":"祖父は休日に書道をたしなむ。","type":"v"},{"id":"p35-たしなめる","page":35,"word":"たしなめる","meaning":"よくない言葉や行いを、控えるよう注意すること。","example":"先生は失礼な発言をした生徒をたしなめた。","type":"v"},{"id":"p35-たじろぐ","page":35,"word":"たじろぐ","meaning":"相手の勢いなどに押されて、ひるむこと。","example":"予想外の質問に少したじろいだ。","type":"v"},{"id":"p35-たそがれ","page":35,"word":"たそがれ","meaning":"日が暮れかかり、辺りが薄暗くなるころ。","example":"たそがれの空が赤く染まった。","type":"n"},{"id":"p35-たたずまい","page":35,"word":"たたずまい","meaning":"人や建物などの姿・雰囲気・ありさま。","example":"古い図書館には落ち着いたたたずまいがある。","type":"n"},{"id":"p35-たちどころに","page":35,"word":"たちどころに","meaning":"時間をかけず、すぐに。","example":"先生は間違いの原因をたちどころに見抜いた。","type":"adv"},{"id":"p35-たどたどしい","page":35,"word":"たどたどしい","meaning":"慣れていないため、話し方や動きがおぼつかない。","example":"初めての外国語をたどたどしく話した。","type":"adj"},{"id":"p35-ためらう","page":35,"word":"ためらう","meaning":"迷いや不安があって、すぐに行動できないこと。","example":"発表の前に手を挙げるのをためらった。","type":"v"},{"id":"p35-たゆみない","page":35,"word":"たゆみない","meaning":"休まず、努力や活動を続けているようす。","example":"たゆみない練習が自信につながった。","type":"adj"},{"id":"p35-ちなむ","page":35,"word":"ちなむ","meaning":"関係のある事柄に結びつけて、名前などをつけること。","example":"町の名前にちなんだお菓子が売られている。","type":"v"},{"id":"p35-つかさどる","page":35,"word":"つかさどる","meaning":"ある仕事や役目を、責任をもって受け持つこと。","example":"校内放送をつかさどる委員が集まった。","type":"v"},{"id":"p35-つきなみ","page":35,"word":"つきなみ","meaning":"ありふれていて、新鮮さや特別さがないこと。","example":"つきなみな感想だが、とても楽しかった。","type":"adj"},{"id":"p35-つじつま","page":35,"word":"つじつま","meaning":"話や物事の前後が矛盾なく合っていること。","example":"説明のつじつまが合うか確かめた。","type":"n"},{"id":"p35-つたない","page":35,"word":"つたない","meaning":"技術や表現が未熟で、上手ではないこと。","example":"つたない文章でも心をこめて書いた。","type":"adj"},{"id":"p35-つちかう","page":35,"word":"つちかう","meaning":"時間をかけて能力・性質・関係などを育てること。","example":"仲間と協力して信頼をつちかった。","type":"v"},{"id":"p36-つつがない","page":36,"word":"つつがない","meaning":"病気や事故などの問題がなく、無事であること。","example":"家族全員がつつがなく新年を迎えた。","type":"adj"},{"id":"p36-つつましい","page":36,"word":"つつましい","meaning":"控えめで、派手ではないようす。","example":"つつましい暮らしを大切にしている。","type":"adj"},{"id":"p36-つのる","page":36,"word":"つのる","meaning":"気持ちや勢いが、ますます強くなること。","example":"発表が近づくにつれて緊張がつのった。","type":"v"},{"id":"p36-つぶさに","page":36,"word":"つぶさに","meaning":"細かいところまで、詳しく。","example":"校庭の変化をつぶさに観察した。","type":"adv"},{"id":"p36-つぶら","page":36,"word":"つぶら","meaning":"丸くてかわいらしいようす。","example":"子犬のつぶらな瞳が印象的だった。","type":"adj"},{"id":"p36-つましい","page":36,"word":"つましい","meaning":"むだを省き、出費を抑えて暮らすようす。","example":"家族はつましい生活を続けた。","type":"adj"},{"id":"p36-てはず","page":36,"word":"てはず","meaning":"物事を進めるために前もって決めた段取り。","example":"集合場所までのてはずを整えた。","type":"n"},{"id":"p36-てんでに","page":36,"word":"てんでに","meaning":"一人ひとりが、それぞれに。","example":"子どもたちはてんでに好きな本を選んだ。","type":"adv"},{"id":"p36-とめどない","page":36,"word":"とめどない","meaning":"終わりなく、次から次へと続くようす。","example":"笑い声がとめどなく聞こえてきた。","type":"adj"},{"id":"p36-ともあれ","page":36,"word":"ともあれ","meaning":"いずれにしても。何はともあれ。","example":"ともあれ、無事に到着して安心した。","type":"adv"},{"id":"p36-ないがしろ","page":36,"word":"ないがしろ","meaning":"大切なものとして扱わず、軽く見ること。","example":"友達との約束をないがしろにしない。","type":"n"},{"id":"p37-なけなし","page":37,"word":"なけなし","meaning":"残りわずかしかない、大切なもの。","example":"なけなしのおこづかいで贈り物を買った。","type":"adj"},{"id":"p37-なごり","page":37,"word":"なごり","meaning":"過ぎ去った物事の気配や、別れを惜しむ気持ち。","example":"春のなごりを感じる暖かな日だった。","type":"n"},{"id":"p37-なじる","page":37,"word":"なじる","meaning":"相手の過ちや欠点を責め立てること。","example":"失敗した友達をなじるのはよくない。","type":"v"},{"id":"p37-なみなみならぬ","page":37,"word":"なみなみならぬ","meaning":"普通の程度ではない、たいへん強いようす。","example":"研究に対するなみなみならぬ熱意を感じた。","type":"adj"},{"id":"p37-にわかに","page":37,"word":"にわかに","meaning":"急に。突然。","example":"空が暗くなり、にわかに雨が降り出した。","type":"adv"},{"id":"p37-ねぎらう","page":37,"word":"ねぎらう","meaning":"苦労や働きに感謝して、いたわること。","example":"大会後、先生は選手たちをねぎらった。","type":"v"},{"id":"p37-のっぴきならない","page":37,"word":"のっぴきならない","meaning":"避けたり後回しにしたりできない状態。","example":"のっぴきならない事情で予定を変更した。","type":"adj"},{"id":"p37-ののしる","page":37,"word":"ののしる","meaning":"ひどい言葉で相手を非難すること。","example":"意見が違っても相手をののしってはいけない。","type":"v"},{"id":"p37-はえある","page":37,"word":"はえある","meaning":"人から称賛されるような、名誉で誇らしいこと。","example":"はえある代表に選ばれて喜んだ。","type":"adj"},{"id":"p37-はがゆい","page":37,"word":"はがゆい","meaning":"思うようにならず、もどかしく感じること。","example":"説明したいのに言葉が出ず、はがゆかった。","type":"adj"},{"id":"p37-はからずも","page":37,"word":"はからずも","meaning":"思いがけず。予想せずに。","example":"はからずも昔の先生に駅で会った。","type":"adv"},{"id":"p37-はぐくむ","page":37,"word":"はぐくむ","meaning":"大切に守りながら育てること。","example":"毎日の対話で友情をはぐくむ。","type":"v"},{"id":"p37-はたして","page":37,"word":"はたして","meaning":"予想や考えのとおり、実際に。","example":"はたして、予報どおり雪になった。","type":"adv"},{"id":"p37-はなはだしい","page":37,"word":"はなはだしい","meaning":"程度が非常に大きく、激しいこと。","example":"この説明には、はなはだしい誤りがある。","type":"adj"},{"id":"p38-はばかる","page":38,"word":"はばかる","meaning":"周囲を気にして、遠慮したり控えたりすること。","example":"人目をはばかって小声で話した。","type":"v"},{"id":"p38-はばむ","page":38,"word":"はばむ","meaning":"行く手をさえぎり、進むのを妨げること。","example":"倒れた木が道をはばんでいた。","type":"v"},{"id":"p38-はびこる","page":38,"word":"はびこる","meaning":"好ましくないものが、広く勢いよく増えること。","example":"根拠のないうわさがはびこった。","type":"v"},{"id":"p38-はれがましい","page":38,"word":"はれがましい","meaning":"人に注目され、誇らしく感じるようす。","example":"表彰式の壇上で、はれがましい気持ちになった。","type":"adj"},{"id":"p38-はれて","page":38,"word":"はれて","meaning":"心配や障害がなくなり、堂々と。","example":"練習を重ね、はれて代表に決まった。","type":"adv"},{"id":"p38-ひたすらに","page":38,"word":"ひたすらに","meaning":"ほかのことを考えず、一つのことに集中して。","example":"ひたすらにゴールを目指して走った。","type":"adv"},{"id":"p38-ひとごこち","page":38,"word":"ひとごこち","meaning":"緊張や不安がなくなり、ほっと落ち着く気持ち。","example":"迷子の犬が見つかり、ひとごこちついた。","type":"n"},{"id":"p38-ひとしお","page":38,"word":"ひとしお","meaning":"いっそう。さらに強く。","example":"苦労して完成した作品には喜びもひとしおだ。","type":"adv"},{"id":"p38-ひより","page":38,"word":"ひより","meaning":"あることをするのに向いた天気や空模様。","example":"今日は遠足にはぴったりの日よりだ。","type":"n"},{"id":"p38-ひるむ","page":38,"word":"ひるむ","meaning":"恐れや驚きで、勢いが弱まること。","example":"強い相手を前にしてもひるまなかった。","type":"v"},{"id":"p38-ふがいない","page":38,"word":"ふがいない","meaning":"期待したほど力を発揮できず、情けないようす。","example":"準備不足で失敗し、ふがいなく感じた。","type":"adj"},{"id":"p38-ぶしつけ","page":38,"word":"ぶしつけ","meaning":"礼儀や遠慮がなく、失礼であるようす。","example":"ぶしつけな質問をしてしまい、謝った。","type":"adj"},{"id":"p38-へりくだる","page":38,"word":"へりくだる","meaning":"自分を低くして、相手を敬う態度をとること。","example":"彼は実力があってもへりくだった態度で話す。","type":"v"},{"id":"p39-ほとばしる","page":39,"word":"ほとばしる","meaning":"液体や感情などが、勢いよく噴き出すこと。","example":"泉から冷たい水がほとばしった。","type":"v"},{"id":"p39-ほとぼり","page":39,"word":"ほとぼり","meaning":"興奮や関心などが、まだ冷めずに残ること。","example":"騒ぎのほとぼりが冷めるのを待った。","type":"n"},{"id":"p39-ほのめかす","page":39,"word":"ほのめかす","meaning":"はっきり言わず、それとなく知らせること。","example":"彼は転校の予定をほのめかした。","type":"v"},{"id":"p39-まことしやか","page":39,"word":"まことしやか","meaning":"本当であるかのように、もっともらしいようす。","example":"まことしやかなうわさをうのみにしない。","type":"adj"},{"id":"p39-まざまざ","page":39,"word":"まざまざ","meaning":"実際に目の前にあるように、はっきりと。","example":"試合の場面がまざまざと思い出された。","type":"adv"},{"id":"p39-まのあたり","page":39,"word":"まのあたり","meaning":"目の前で直接見ること。","example":"自然の迫力をまのあたりにした。","type":"n"},{"id":"p39-まばゆい","page":39,"word":"まばゆい","meaning":"まぶしいほど明るく、輝いていること。","example":"朝日に照らされた海がまばゆかった。","type":"adj"},{"id":"p39-まんざら（～ない）","page":39,"word":"まんざら（～ない）","meaning":"必ずしもそうではないことを表す言い方。","example":"新しい挑戦もまんざら嫌ではない。","type":"adv"},{"id":"p39-みくびる","page":39,"word":"みくびる","meaning":"相手の力や価値を低く見積もること。","example":"小さな失敗だからといって相手をみくびらない。","type":"v"},{"id":"p39-みさかいない","page":39,"word":"みさかいない","meaning":"よしあしや区別を考えずに、何でも。","example":"みさかいなく物を買わないようにする。","type":"adj"},{"id":"p39-みじろぎ","page":39,"word":"みじろぎ","meaning":"体をほんの少し動かすこと。","example":"観客はみじろぎもせず演奏を聴いていた。","type":"n"},{"id":"p39-むつまじい","page":39,"word":"むつまじい","meaning":"親しく、仲がよいようす。","example":"兄弟がむつまじく遊んでいる。","type":"adj"},{"id":"p39-めざとい","page":39,"word":"めざとい","meaning":"ほかの人より早く、すぐに見つけること。","example":"母は小さな変化にもめざとく気づく。","type":"adj"},{"id":"p39-めざましい","page":39,"word":"めざましい","meaning":"目立つほど立派で、すばらしいこと。","example":"チームはめざましい成長を遂げた。","type":"adj"},{"id":"p39-めでる","page":39,"word":"めでる","meaning":"美しさやよさを味わい、大切に思うこと。","example":"庭の花をめでながら散歩した。","type":"v"},{"id":"p39-もくろむ","page":39,"word":"もくろむ","meaning":"何かをしようと、あらかじめ計画すること。","example":"友達を驚かせようと作戦をもくろんだ。","type":"v"},{"id":"p40-もっぱら","page":40,"word":"もっぱら","meaning":"主に。それだけを中心に。","example":"休日はもっぱら読書を楽しむ。","type":"adv"},{"id":"p40-もてあます","page":40,"word":"もてあます","meaning":"扱いきれず、どうしたらよいか困ること。","example":"長い待ち時間をもてあました。","type":"v"},{"id":"p40-もどかしい","page":40,"word":"もどかしい","meaning":"思うように進まず、じれったいようす。","example":"答えを思い出せず、もどかしかった。","type":"adj"},{"id":"p40-ものおじ","page":40,"word":"ものおじ","meaning":"初めての人や場所を怖がり、しりごみすること。","example":"初舞台でもものおじせずに話した。","type":"n"},{"id":"p40-ものごころ","page":40,"word":"ものごころ","meaning":"周囲のことが分かり始める幼いころの心。","example":"ものごころついたころから絵が好きだった。","type":"n"},{"id":"p40-ものものしい","page":40,"word":"ものものしい","meaning":"大げさで、厳重な雰囲気があるようす。","example":"入口にはものものしい警備が敷かれていた。","type":"adj"},{"id":"p40-ものわかれ","page":40,"word":"ものわかれ","meaning":"話し合いがまとまらず、決着しないで終わること。","example":"意見が対立し、会議はものわかれに終わった。","type":"n"},{"id":"p40-やおら","page":40,"word":"やおら","meaning":"ゆっくりと。おもむろに。","example":"彼女はやおら立ち上がり、話し始めた。","type":"adv"},{"id":"p40-やにわに","page":40,"word":"やにわに","meaning":"前ぶれもなく、突然。","example":"犬がやにわに走り出して驚いた。","type":"adv"},{"id":"p40-やましい","page":40,"word":"やましい","meaning":"後ろめたく、心に恥じることがあるようす。","example":"やましいことがなければ堂々と説明できる。","type":"adj"},{"id":"p40-ゆえん","page":40,"word":"ゆえん","meaning":"そう言われる理由や、根拠となるわけ。","example":"努力家と呼ばれるゆえんを知った。","type":"n"},{"id":"p40-ゆだねる","page":40,"word":"ゆだねる","meaning":"判断や仕事などを、ほかの人に任せること。","example":"次の進行を司会者にゆだねた。","type":"v"},{"id":"p40-ゆゆしい","page":40,"word":"ゆゆしい","meaning":"放っておけないほど重大であるようす。","example":"資料の紛失はゆゆしい問題だ。","type":"adj"},{"id":"p40-よこしま","page":40,"word":"よこしま","meaning":"心や考えが正しくなく、悪い方向に向くようす。","example":"よこしまな考えを持たずに取り組む。","type":"adj"},{"id":"p41-よもや","page":41,"word":"よもや","meaning":"まさか。予想もしていなかったことを表す。","example":"よもや彼が優勝するとは思わなかった。","type":"adv"},{"id":"p41-よろず","page":41,"word":"よろず","meaning":"さまざまなこと。あらゆるもの。","example":"町のよろず相談所で話を聞いてもらった。","type":"n"},{"id":"p41-わずらわしい","page":41,"word":"わずらわしい","meaning":"手間がかかり、面倒で気が重いようす。","example":"細かい手続きがわずらわしく感じられた。","type":"adj"},{"id":"p41-わだかまり","page":41,"word":"わだかまり","meaning":"心に残って、なかなか消えない不満や疑い。","example":"話し合いをしてわだかまりが解けた。","type":"n"},{"id":"p41-われがちに","page":41,"word":"われがちに","meaning":"自分が先になろうと、競い合うようす。","example":"子どもたちはわれがちに席へ走った。","type":"adv"}];
+const PAGE_LIST=[...new Set(WORDS.map(w=>w.page))];
+const KEY='ricchan_kotoba_a_2026_v1';
+const BLANK={wrong:[], stamps:0, best:0};
+function readSave(){try{const a=JSON.parse(localStorage.getItem(KEY)||'{}');return {wrong:Array.isArray(a.wrong)?a.wrong:[],stamps:Number(a.stamps)||0,best:Number(a.best)||0}}catch(e){return {...BLANK}}}
+let save=readSave();
+function writeSave(){try{localStorage.setItem(KEY,JSON.stringify(save))}catch(e){}}
+const $=id=>document.getElementById(id);
+const esc=s=>String(s).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'",'&#39;');
+const shuffle=a=>{const b=[...a];for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]]}return b};
+let cfg={mode:'meaning',timing:'end'},questions=[],idx=0,selected=null,answers=[],shown=false;
+const allViews=['homeView','quizView','resultView','wordView'];
+function view(name){allViews.forEach(n=>$(n).classList.toggle('hidden',n!==name));window.scrollTo({top:0,behavior:'instant'})}
+function updateStats(){
+ $('wordCount').textContent=WORDS.length;$('weakCount').textContent=save.wrong.filter(id=>WORDS.some(w=>w.id===id)).length;$('stampCount').textContent=save.stamps;
+ $('stampbar').innerHTML=save.stamps?Array.from({length:Math.min(save.stamps,24)},(_,i)=>`<span class="stamp" title="がんばりスタンプ ${i+1}">${['🌸','⭐','🎀','🐰','🌷','🍓'][i%6]}</span>`).join(''):`<span class="tiny">80%以上正解するとスタンプがもらえるよ。</span>`;
+ $('weakStartBtn').disabled=!save.wrong.some(id=>WORDS.some(w=>w.id===id));
+}
+function setup(){
+ PAGE_LIST.forEach(p=>{const n=WORDS.filter(w=>w.page===p).length;for(const id of ['pageSelect','listPage']){const option=document.createElement('option');option.value=String(p);option.textContent=`${p}ページ（${n}語）`;$(id).append(option)}});
+ ['modeSeg','timingSeg'].forEach(group=>$(group).addEventListener('click',e=>{const b=e.target.closest('button[data-v]');if(!b)return;const key=group==='modeSeg'?'mode':'timing';cfg[key]=b.dataset.v;$(group).querySelectorAll('button').forEach(btn=>btn.setAttribute('aria-pressed',String(btn===b)))}));
+ $('startBtn').addEventListener('click',()=>{const src=$('pageSelect').value==='all'?WORDS:WORDS.filter(w=>w.page===Number($('pageSelect').value));const c=$('countSelect').value;start(shuffle(src).slice(0,c==='all'?src.length:Math.min(Number(c),src.length)))});
+ $('weakStartBtn').addEventListener('click',()=>{const w=WORDS.filter(x=>save.wrong.includes(x.id));if(w.length)start(shuffle(w))});
+ $('skipBtn').addEventListener('click',()=>{if(shown){advance();return}submit(null)});
+ $('nextBtn').addEventListener('click',()=>{if(cfg.timing==='each'&&!shown){submit(selected)}else if(cfg.timing==='end'){submit(selected)}else advance()});
+ $('homeNav').addEventListener('click',()=>{if(!$('quizView').classList.contains('hidden')&&!confirm('途中のテストを終了してホームに戻りますか？'))return;view('homeView');updateStats()});
+ $('wordNav').addEventListener('click',()=>{if(!$('quizView').classList.contains('hidden')&&!confirm('途中のテストを終了して語句一覧を見ますか？'))return;renderWordList();view('wordView')});
+ $('wordBack').addEventListener('click',()=>{updateStats();view('homeView')});
+ $('againBtn').addEventListener('click',()=>{updateStats();view('homeView')});
+ $('retryBtn').addEventListener('click',()=>{const wrong=answers.filter(a=>a.picked!==a.correct).map(a=>a.word);if(wrong.length)start(shuffle(wrong));else view('homeView')});
+ ['listPage','listStatus','wordSearch'].forEach(id=>$(id).addEventListener(id==='wordSearch'?'input':'change',renderWordList));
+ document.addEventListener('keydown',e=>{if($('quizView').classList.contains('hidden')||shown)return;const n=Number(e.key);if(n>=1&&n<=4&&String(n)===e.key)choose(n-1)});
+ updateStats();view('homeView');
+}
+function buildChoices(w){
+ let pool=WORDS.filter(d=>d.id!==w.id&&d.type===w.type);
+ pool=shuffle(pool.filter(d=>d.page===w.page)).concat(shuffle(pool.filter(d=>d.page!==w.page)));
+ const picked=[w,...pool.slice(0,3)];return shuffle(picked).map(d=>({id:d.id,word:d.word,meaning:d.meaning}));
+}
+function start(words){if(!words.length)return;
+ questions=words.map(w=>({word:w,options:buildChoices(w)}));idx=0;selected=null;answers=[];shown=false;view('quizView');renderQuestion();
+}
+function renderQuestion(){const q=questions[idx];if(!q){finish();return}
+ selected=null;shown=false;$('feedback').className='feedback hidden';$('feedback').innerHTML='';$('nextBtn').disabled=true;$('nextBtn').textContent=cfg.timing==='each'?'答え合わせ':'次の問題へ →';$('skipBtn').textContent='わからない・とばす';
+ $('questionNumber').textContent=`第 ${idx+1} 問 / 全 ${questions.length} 問`;$('miniScore').textContent=`${q.word.page}ページ · A`;$('progressFill').style.width=`${100*idx/questions.length}%`;
+ $('qtype').textContent=cfg.mode==='meaning'?'次の語句の意味として正しいものはどれ？':'次の意味に当てはまる語句はどれ？';$('questionText').textContent=cfg.mode==='meaning'?q.word.word:q.word.meaning;
+ $('choices').innerHTML=q.options.map((opt,i)=>`<button type="button" class="choice" data-n="${i}" aria-pressed="false"><span class="mark">${i+1}</span><span>${esc(cfg.mode==='meaning'?opt.meaning:opt.word)}</span></button>`).join('');
+ $('choices').querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>choose(Number(b.dataset.n))));
+}
+function choose(n){if(shown||n<0||n>=questions[idx].options.length)return;selected=n;
+ $('choices').querySelectorAll('button').forEach((b,i)=>{b.classList.toggle('selected',i===n);b.setAttribute('aria-pressed',String(i===n))});$('nextBtn').disabled=false;
+}
+function submit(n){if(shown)return;const q=questions[idx];const picked=n==null?null:q.options[n].id;const correct=q.word.id;answers.push({word:q.word,picked,correct,chosenWord:picked&&WORDS.find(w=>w.id===picked)});
+ if(cfg.timing==='each'){
+  shown=true;const ok=picked===correct;const btns=[...$('choices').querySelectorAll('button')];btns.forEach((b,i)=>{b.disabled=true;if(q.options[i].id===correct)b.classList.add('correct');else if(i===n)b.classList.add('incorrect')});
+  $('feedback').className='feedback '+(ok?'ok':'ng');$('feedback').innerHTML=`<strong>${ok?'🌸 正解！ やったね！':'💗 おしい！ 正しい答えを確認しよう'}</strong><div style="margin-top:7px"><b>${esc(q.word.word)}</b>：${esc(q.word.meaning)}</div><div class="ex">例文：${esc(q.word.example)}</div>`;
+  $('nextBtn').disabled=false;$('nextBtn').textContent=idx===questions.length-1?'結果を見る →':'次の問題へ →';$('skipBtn').textContent='次の問題へ';return;
+ }
+ advance();
+}
+function advance(){idx++;if(idx<questions.length)renderQuestion();else finish()}
+function finish(){if(!answers.length){view('homeView');return};const n=answers.filter(a=>a.picked===a.correct).length,pct=Math.round(100*n/answers.length),wrongs=answers.filter(a=>a.picked!==a.correct),prior=new Set(save.wrong);
+ answers.forEach(a=>{if(a.picked===a.correct)prior.delete(a.word.id);else prior.add(a.word.id)});save.wrong=[...prior];if(pct>=80)save.stamps++;save.best=Math.max(save.best,pct);writeSave();
+ $('resultPct').textContent=`${pct}%`;$('resultCount').textContent=`${n} / ${answers.length} 問正解`;
+ $('resultTitle').textContent=pct===100?'🌸 全問正解！ すごい！':pct>=80?'🌷 よくできました！':'テストおつかれさま！';
+ $('resultMsg').textContent=pct===100?'すべて正解！ 言葉の力が育っているね。スタンプを1つ獲得！':pct>=80?'よくがんばったね！ スタンプを1つ獲得！':`正解は${n}問。間違えた${wrongs.length}語を確認して、もう一度挑戦しよう。`;
+ $('retryBtn').disabled=!wrongs.length;$('retryBtn').textContent=wrongs.length?`まちがい${wrongs.length}語を解き直す`:'全問正解！';
+ $('reviewDesc').textContent=wrongs.length?`間違えた・とばした語句が${wrongs.length}語あります。意味と例文を見て復習しよう。`:'今回は間違えた語句はありません。おめでとう！';
+ $('reviewList').innerHTML=wrongs.map(a=>`<div class="reviewItem"><div><b>${esc(a.word.word)}</b><span class="pill">${a.word.page}ページ</span></div><p>${esc(a.word.meaning)}</p><p class="wrong">${a.picked===null?'未回答':`選んだ答え：${esc(cfg.mode==='meaning'?a.chosenWord?.meaning||'':a.chosenWord?.word||'')}`}</p><p>例文：${esc(a.word.example)}</p></div>`).join('');
+ updateStats();view('resultView');
+}
+function renderWordList(){const p=$('listPage').value,q=$('wordSearch').value.trim(),weak=$('listStatus').value==='weak';const arr=WORDS.filter(w=>(p==='all'||w.page===Number(p))&&(!weak||save.wrong.includes(w.id))&&(!q||w.word.includes(q)||w.meaning.includes(q)));
+ $('wordsList').innerHTML=arr.length?arr.map(w=>`<div class="wordItem"><b>${esc(w.word)}${save.wrong.includes(w.id)?' 💗':''}</b><span>${w.page}ページ · ${esc(w.meaning)}</span></div>`).join(''):'<p class="note">該当する語句はありません。</p>';
+}
+setup();
+</script>
+</body>
+</html>
